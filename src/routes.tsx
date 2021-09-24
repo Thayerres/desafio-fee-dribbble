@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css'
 const Routes = () => {
     return (
         <Router>
-            <ToastContainer newestOnTop={true} theme="colored" />
+            <ToastContainer newestOnTop={true} theme="light" />
             <GlobalStyles />
             <Switch>
                 <Route exact path="/">
