@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import SignUp from "./pages/SignUp";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import 'react-toastify/dist/ReactToastify.css'
+import SignIn from "./pages/SignIn";
 
 const Routes = () => {
     return (
@@ -21,6 +22,9 @@ const Routes = () => {
                 </Route>
                 <Route path="/signup">
                     <SignUp/>
+                </Route>
+                <Route path="/signin">
+                    <SignIn/>
                 </Route>
             </Switch>
         </Router>
