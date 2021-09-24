@@ -38,7 +38,7 @@ const SignUp = () => {
             toast.success('Created account successfully!')
             clearFields()
         } catch(error) {
-            toast.error(error?.response?.data?.message)
+            toast.error(error?.response?.data?.message || "Unable to create account")
         }
         setLoading(false)        
     }
