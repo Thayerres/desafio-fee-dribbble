@@ -7,6 +7,7 @@ import { ButtonCantainer, Content, Form, Main, Member, Title } from "./styles"
 import { toast } from "react-toastify"
 import validateEmail from "../../utils/validateEmail"
 import api from "../../services/api"
+import { Link } from "react-router-dom"
 
 
 const SignUp = () => {
@@ -70,7 +71,11 @@ const SignUp = () => {
             <Sidebar />
             <Content>
                 <Member>
-                    <p>Already a member? <span>Sign in</span></p>
+                    <p>Already a member? 
+                        <Link to="/signin">
+                            <span> Sign in</span>
+                        </Link>
+                    </p>
                 </Member>
                 <Main>
                     <Form onSubmit={createUser}>
