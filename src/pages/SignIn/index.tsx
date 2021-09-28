@@ -7,24 +7,16 @@ import { ButtonCantainer, Content, Form, Main, Member, Title } from "./styles"
 import { toast } from "react-toastify"
 import validateEmail from "../../utils/validateEmail"
 import api from "../../services/api"
-import { Link } from "react-router-dom"
-
-interface IUser {
-    id: string,
-    name: string,
-    email: string
-}
-
-interface IResponse {
-    access_token: string,
-    user: IUser;
-}
+import { Link, useHistory } from "react-router-dom"
+import { IAuth, useGlobalState } from "../../Context/GlobalContext"
 
 
 const SignIn = () => {
     const [email,setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
+    const { setAuth } = useGlobalState()
+    const history = useHistory()
 
     const isDisabled = email === '' || password === '' || loading
 
@@ -36,14 +28,15 @@ const SignIn = () => {
             toast.error(validation)
             return
         }
-
         setLoading(true)
         try{
-            const { data } = await api.post<IResponse>("/login",{
+            const { data } = await api.post<IAuth>("/login",{
                 email,
                 password
             })
+            setAuth(data)
             clearFields()
+            history.push('/')
         } catch(error) {
             toast.error(error?.response?.data?.message || "Unable to enter")
         }

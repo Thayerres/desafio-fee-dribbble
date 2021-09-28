@@ -10,24 +10,28 @@ import SignUp from "./pages/SignUp";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import 'react-toastify/dist/ReactToastify.css'
 import SignIn from "./pages/SignIn";
+import { GlobalStateProvider } from "./Context/GlobalContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Routes = () => {
     return (
-        <Router>
-            <ToastContainer newestOnTop={true} theme="light" />
-            <GlobalStyles />
-            <Switch>
-                <Route exact path="/">
-                    <Home />
-                </Route>
-                <Route path="/signup">
-                    <SignUp/>
-                </Route>
-                <Route path="/signin">
-                    <SignIn/>
-                </Route>
-            </Switch>
-        </Router>
+        <GlobalStateProvider>
+            <Router>
+                <ToastContainer newestOnTop={true} theme="light" />
+                <GlobalStyles />
+                <Switch>
+                    <ProtectedRoute exact path="/">
+                        <Home />
+                    </ProtectedRoute>
+                    <Route path="/signup">
+                        <SignUp/>
+                    </Route>
+                    <Route path="/signin">
+                        <SignIn/>
+                    </Route>
+                </Switch>
+            </Router>
+        </GlobalStateProvider>
     )
 }
 

@@ -1,8 +1,10 @@
+import { useGlobalState } from "../../Context/GlobalContext";
+
 function Home() {
+  const { auth } = useGlobalState()
+
   return (
-    <div>
-      <h1>Página Home</h1>
-    </div>
+      <h1>Usuário {auth?.user.name.toUpperCase()} logado.</h1>
   );
 }
 
